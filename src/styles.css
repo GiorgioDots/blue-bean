@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "tailwindcss";
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    @apply h-dvh m-0 overflow-hidden;
+}
+
+body {
+    @apply h-full;
+}

@@ -1,0 +1,23 @@
+@if (open) {
+<div class="fixed inset-0 z-50 flex items-center justify-center">
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" (click)="onBackdropClick()"></div>
+
+  <div
+    class="relative z-10 max-w-[90vw] max-h-[90vh] bg-blue-200 border-2 border-blue-300 rounded-2xl shadow-xl p-4 animate-scale-in"
+  >
+    <button
+      class="absolute top-1.5 right-1.5 text-gray-400 hover:text-gray-700 text-xl font-bold leading-2"
+      (click)="close.emit()"
+      aria-label="Close"
+    >
+      ×
+    </button>
+
+    <img
+      [src]="imageUrl"
+      alt="Cute cat"
+      class="rounded-xl max-w-full max-h-[80vh] object-contain  shadow-2xl shadow-blue-300"
+    />
+  </div>
+</div>
+}

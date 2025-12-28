@@ -1,0 +1,99 @@
+.loading-wrapper {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #87ceeb;
+  font-family: system-ui, sans-serif;
+}
+
+/* PARALLAX LAYERS */
+.layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: repeat-x;
+  background-position: bottom;
+  animation-timing-function: linear;
+}
+
+/* SKY */
+.sky {
+  background: linear-gradient(#87ceeb, #bdefff);
+  z-index: 1;
+}
+
+/* CLOUDS */
+.clouds {
+  background-image: url('/parallax/2.png');
+  background-size: 600px;
+  animation: move-slow 60s linear infinite;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+/* TREES */
+.trees {
+  background-image: url('/parallax/3.png');
+  background-size: 800px;
+  animation: move-mid 30s linear infinite;
+  z-index: 3;
+}
+
+/* GARDEN */
+.garden {
+  background-image: url('/parallax/4.png');
+  background-size: 700px;
+  animation: move-fast 15s linear infinite;
+  z-index: 4;
+}
+
+/* CAT LOADER */
+.cat {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 10;
+  text-align: center;
+}
+
+.paws {
+  font-size: 40px;
+  animation: paw-bounce 1.2s infinite ease-in-out;
+}
+
+.text {
+  margin-top: 8px;
+  color: #444;
+  font-weight: 600;
+}
+
+/* ANIMATIONS */
+@keyframes move-slow {
+  from { background-position-x: 0; }
+  to { background-position-x: -600px; }
+}
+
+@keyframes move-mid {
+  from { background-position-x: 0; }
+  to { background-position-x: -800px; }
+}
+
+@keyframes move-fast {
+  from { background-position-x: 0; }
+  to { background-position-x: -700px; }
+}
+
+@keyframes paw-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.clouds {
+  background-position-x: calc(var(--parallax-x) * 0.2);
+}
+.trees {
+  background-position-x: calc(var(--parallax-x) * 0.5);
+}
+.garden {
+  background-position-x: var(--parallax-x);
+}
