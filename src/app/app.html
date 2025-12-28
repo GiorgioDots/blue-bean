@@ -1,7 +1,9 @@
-<div class="h-full">
-  <canvas #pixiCanvas></canvas>
+<div class="h-full" (click)="playSong()">
+  <div class="h-full">
+    <canvas #pixiCanvas></canvas>
+  </div>
+  @if (loadingOpacity() > 0){
+  <app-loading [ngStyle]="{ opacity: loadingOpacity() }"></app-loading>
+  }
+  <app-modal [imageUrl]="selectedBlue()" [open]="modalOpen()" (close)="closeModal()"></app-modal>
 </div>
-@if (loadingOpacity() > 0){
-<app-loading [ngStyle]="{ opacity: loadingOpacity() }"></app-loading>
-}
-<app-modal [imageUrl]="selectedBlue()" [open]="modalOpen()" (close)="closeModal()"></app-modal>

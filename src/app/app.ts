@@ -22,6 +22,8 @@ export class App implements OnInit {
   selectedBlue = signal('');
   modalOpen = signal(false);
 
+  audio = new Audio();
+
   async ngOnInit(): Promise<void> {
     await this.app.init({
       background: '#ffffff',
@@ -87,9 +89,11 @@ export class App implements OnInit {
     // Scroll handler
     let lastXPos: number | undefined;
     this.app.canvas.addEventListener('pointerdown', (e) => {
+      this.playSong()
       lastXPos = e.clientX;
     });
     this.app.canvas.addEventListener('pointermove', (e) => {
+      this.playSong()
       if (lastXPos == undefined) return;
       const delta = lastXPos - e.clientX;
       this.parallax.onUserScroll(delta * 0.4);
@@ -108,7 +112,6 @@ export class App implements OnInit {
       this.modalOpen.set(true);
     });
 
-    //
     this.app.ticker.add((time) => {
       this.parallax.update(time.deltaTime, this.modalOpen());
       foreground.update(time.deltaTime, this.modalOpen());
@@ -148,5 +151,17 @@ export class App implements OnInit {
   closeModal() {
     this.modalOpen.set(false);
     this.selectedBlue.set('');
+  }
+
+  played = false;
+  playSong() {
+    if (!this.played) {
+      this.audio.src = '/sounds/pallet-town.mp3';
+      this.audio.load();
+      this.audio.volume = 0.5;
+      this.audio.play();
+      this.audio.addEventListener('ended', () => this.audio.play());
+      this.played = true;
+    }
   }
 }
